@@ -1,6 +1,11 @@
 <?php
 require 'includes/header.php';
+?>
 
-echo 'Hello';
+<p>
+  <a href="" class="btn btn-primary btn-lg" role="button">Rate My Landlord</a>
+  <a href="" class="btn btn-primary btn-lg" role="button">View Ratings</a>
+</p>
 
+<?php
 require 'includes/footer.php';
