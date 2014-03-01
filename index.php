@@ -10,7 +10,7 @@ $app->get('/', function () use($app) {
     $app->render('index.php');
 });
 
-$app->get('/rate-may-landlord', function () use($app) {
+$app->get('/rate-my-landlord', function () use($app) {
     $app->render('rate-may-landlord');
 });
 
