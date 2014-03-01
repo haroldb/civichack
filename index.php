@@ -1,6 +1,10 @@
 <?php
 require 'Slim/Slim.php';
+require 'src/Rating.php';
+
 \Slim\Slim::registerAutoloader();
+
+use RateMyLandlord\Rating;
 
 $app = new \Slim\Slim(array(
         'debug' => true
@@ -21,6 +25,8 @@ $app->get('/rate-my-landlord', function () use($app) {
 });
 
 $app->get('/view-ratings', function () use($app) {
+    $ratings = Rating::getRatings();
+    $app->view()->setData(array('ratings' => $ratings));
     $app->render('view-ratings.php');
 });
 
