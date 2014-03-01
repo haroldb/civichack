@@ -6,6 +6,12 @@ $app = new \Slim\Slim(array(
         'debug' => true
 ));
 
+$app->hook('slim.before', function () use ($app) {
+    $posIndex = strpos( $_SERVER['PHP_SELF'], '/index.php');
+    $baseUrl = substr( $_SERVER['PHP_SELF'], 0, $posIndex);
+    $app->view()->appendData(array('baseUrl' => $baseUrl . '/' ));
+});
+
 $app->get('/', function () use($app) {
     $app->render('index.php');
 });
