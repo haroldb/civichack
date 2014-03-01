@@ -24,7 +24,17 @@ $app->get('/rate-my-landlord', function () use($app) {
     $app->render('rate-my-landlord.php');
 });
 
+$app->get('/civichack/rate-my-landlord', function () use($app) {
+    $app->render('rate-my-landlord.php');
+});
+
 $app->get('/view-ratings', function () use($app) {
+    $ratings = Rating::getRatings();
+    $app->view()->setData(array('ratings' => $ratings));
+    $app->render('view-ratings.php');
+});
+
+$app->get('/civichack/view-ratings', function () use($app) {
     $ratings = Rating::getRatings();
     $app->view()->setData(array('ratings' => $ratings));
     $app->render('view-ratings.php');
