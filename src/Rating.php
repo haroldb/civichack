@@ -14,6 +14,7 @@ class Rating
     public $streetAddress;
     public $postcode;
     public $email;
+    public $occupants;
     public $timeToRespond;
     public $qualityOfSolution;
     public $location;
@@ -24,6 +25,7 @@ class Rating
         $this->streetAddress = '';
         $this->postcode = '';
         $this->email = '';
+        $this->occupants = 0;
         $this->timeToRespond = 0;
         $this->qualityOfSolution = 0;
         $this->location = 0;
@@ -36,6 +38,7 @@ class Rating
         $this->streetAddress = $result->Field1;
         $this->postcode = $result->Field5;
         $this->email = $result->Field22;
+        $this->occupants = $result->Field25;
         $this->timeToRespond = $result->Field13;
         $this->qualityOfSolution = $result->Field14;
         $this->location = $result->Field17;
