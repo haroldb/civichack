@@ -1,6 +1,5 @@
 <?php require 'includes/header.php'; ?>
 
-<input type="hidden" id="gMapApiKey" name="gMapApiKey" value="AIzaSyA7Tq9Y5gDSBuFMBjdt3fhjozyLjdHb3v0">
 <div id="postcode-entry" style="padding-bottom:40px;">
     <form id="validatePostCodeSubmit" action="javascript:void(0);">
         Search via postcode: <input type="validatePostCode" name="validatePostCode" id="validatePostCodeCode">
@@ -8,15 +7,16 @@
         <div class="postcode-entry-error" style="color:red;"></div>
     </form>
 </div>
+<div id="map-canvas" style="width:100%;height:400px;text-align:center;border:1px solid black; margin-top:30px; margin-bottom:30px;"></div>
 
 <?php
-foreach ($this->data['ratings'] as $rating):
+foreach ($this->data['ratings'] as $index => $rating):
     $totalScore = 0;
 ?>
 <div class="rating">
     <address>
         <a href="/rating/<?= $rating->entryId; ?>"><?= $rating->streetAddress; ?></a><br />
-        <?= $rating->postcode; ?><br>
+        <div class="postcodeval postcode<?= $index; ?>"><?= $rating->postcode; ?><br>
     </address>
 </div>
 

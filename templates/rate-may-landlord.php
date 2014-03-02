@@ -11,7 +11,7 @@
     </form>
 </div>
 -->
-
+<div id="map-canvas"></div>
 <div id="wufoo-z62f6my1lr0417">
     Fill out my <a href="https://dock2014.wufoo.com/forms/z62f6my1lr0417">online form</a>.
 </div>
