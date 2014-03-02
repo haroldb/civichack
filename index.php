@@ -1,6 +1,7 @@
 <?php
 require 'Slim/Slim.php';
 require 'src/Rating.php';
+require 'src/Misc.php';
 
 \Slim\Slim::registerAutoloader();
 
@@ -42,9 +43,28 @@ $app->get('/view-ratings', function () use($app) {
     $app->render('view-ratings.php');
 });
 
-$app->get('/rating/:id', function ($name) use ($app) {
-    $app->view()->setData(array('id' => $name));
-    $app->render('rating.php');
+$app->get('/rating/:id', function ($id) use ($app) {
+    $ratings = Rating::getRatingByID($id);
+    if (empty($ratings)) {
+$res = new \Slim\Http\Response();
+$res->setStatus(400);
+$res->write('You made a bad request');
+$res->headers->set('Content-Type', 'text/plain');
+
+/**
+ * Finalize
+ * @return [
+ *     200,
+ *     ['Content-type' => 'text/plain'],
+ *     'You made a bad request'
+ * ]
+ */
+$res->isNotFound();
+exit;
+    } else {
+        $app->view()->setData(array('ratings' => $ratings));
+        $app->render('rating.php');
+    }
 });
 
 $app->get('/search/:postcode', function ($postcode) use ($app) {

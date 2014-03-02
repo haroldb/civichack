@@ -13,7 +13,7 @@ foreach ($this->data['ratings'] as $rating):
 ?>
 <div class="rating">
     <address>
-        <?= $rating->streetAddress; ?><br>
+        <a href="/rating/<?= $rating->entryId; ?>"><?= $rating->streetAddress; ?></a><br />
         <?= $rating->postcode; ?><br>
     </address>
     <ul class="list-unstyled">
@@ -26,6 +26,7 @@ foreach ($this->data['ratings'] as $rating):
         <li>Location: <?= $rating->location; ?></li>
         <li>Property condition: <?= $rating->propertyCondition; ?></li>
         <li>Communication: <?= $rating->communication; ?></li>
+        <li>Submission Date: <?= $rating->dateCreated; ?></li>
     </ul>
 </div>
 <hr>

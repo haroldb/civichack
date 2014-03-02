@@ -11,6 +11,8 @@ class Rating
     const API_URL = 'https://dock2014.wufoo.com';
     const API_PATH = '/api/v3/forms/rate-my-landlord/entries.json';
 
+    public $entryId;
+    public $dateCreated;
     public $streetAddress;
     public $postcode;
     public $email;
@@ -22,6 +24,8 @@ class Rating
     public $communication;
 
     function __construct() {
+        $this->entryId = -1;
+        $this->dateCreated = '';
         $this->streetAddress = '';
         $this->postcode = '';
         $this->email = '';
@@ -35,6 +39,8 @@ class Rating
 
     private function populate($result)
     {
+        $this->entryId = $result->EntryId;
+        $this->dateCreated = $result->DateCreated;
         $this->streetAddress = $result->Field1;
         $this->postcode = $result->Field5;
         $this->email = $result->Field22;
@@ -63,7 +69,7 @@ class Rating
             $ratings[] = $rating;
         }
 
-        return $ratings;
+        return array_reverse($ratings);
     }
 
     public static function getSearchResults($postcode)
@@ -85,6 +91,30 @@ class Rating
                 continue;
             }
  
+            $rating = new self();
+            $rating->populate($result);
+            $ratings[] = $rating;
+        }
+
+        return $ratings;
+    }
+
+    public static function getRatingByID($entryID)
+    {
+        $client = new Client(self::API_URL);
+        $request = $client->get(self::API_PATH)->setAuth(self::API_KEY, 'footastic');
+        $response = $request->send();
+        $json = $response->getBody();
+        $results = json_decode($json);
+
+        $ratings = array();
+
+        foreach ($results->Entries as $result)
+        {
+            if ($entryID !== $result->EntryId) {
+                continue;
+            }
+
             $rating = new self();
             $rating->populate($result);
             $ratings[] = $rating;
