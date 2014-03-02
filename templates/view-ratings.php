@@ -1,5 +1,13 @@
 <?php require 'includes/header.php'; ?>
 
+<div id="postcode-entry" style="padding-bottom:40px;">
+    <form id="validatePostCodeSubmit" action="javascript:void(0);">
+        Search via postcode: <input type="validatePostCode" name="validatePostCode" id="validatePostCodeCode">
+        <input type="submit" value="Search" class="validatePostCodeSubmit">
+        <div class="postcode-entry-error" style="color:red;"></div>
+    </form>
+</div>
+
 <?php
 foreach ($this->data['ratings'] as $rating):
 ?>
