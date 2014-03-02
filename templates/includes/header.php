@@ -23,7 +23,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Rate My Landlord</a>
+          <a class="navbar-brand" href="#">Rate My Landlord - Beta</a>
         </div>
       </div>
     </div>

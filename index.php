@@ -20,8 +20,20 @@ $app->get('/', function () use($app) {
     $app->render('index.php');
 });
 
+$app->get('/about-us', function () use($app) {
+    $app->render('about-us.php');
+});
+
+$app->get('/essential-info', function () use($app) {
+    $app->render('essential-info.php');
+});
+
 $app->get('/rate-my-landlord', function () use($app) {
     $app->render('rate-my-landlord.php');
+});
+
+$app->get('/contact-us', function () use($app) {
+    $app->render('contact-us.php');
 });
 
 $app->get('/view-ratings', function () use($app) {
@@ -33,6 +45,12 @@ $app->get('/view-ratings', function () use($app) {
 $app->get('/rating/:id', function ($name) use ($app) {
     $app->view()->setData(array('id' => $name));
     $app->render('rating.php');
+});
+
+$app->get('/search/:postcode', function ($postcode) use ($app) {
+    $results = Rating::getSearchResults($postcode);
+    $app->view()->setData(array('ratings' => $results));
+    $app->render('search-results.php');
 });
 
 //old urls still on social media

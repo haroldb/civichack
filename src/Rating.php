@@ -65,4 +65,31 @@ class Rating
 
         return $ratings;
     }
+
+    public static function getSearchResults($postcode)
+    {
+        $client = new Client(self::API_URL);
+        $request = $client->get(self::API_PATH)->setAuth(self::API_KEY, 'footastic');
+        $response = $request->send();
+        $json = $response->getBody();
+        $results = json_decode($json);
+
+        $ratings = array();
+
+        foreach ($results->Entries as $result)
+        {
+            //filter
+            $postcodeTosearch = strtolower(preg_replace('/\s+/', '', $postcode));
+            $postcodeTosearchAgainst = strtolower(preg_replace('/\s+/', '', $result->Field5));          
+            if (strpos($postcodeTosearchAgainst, substr($postcodeTosearch, 0, 3)) !== 0) {
+                continue;
+            }
+ 
+            $rating = new self();
+            $rating->populate($result);
+            $ratings[] = $rating;
+        }
+
+        return $ratings;
+    }
 }
