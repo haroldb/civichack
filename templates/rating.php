@@ -10,16 +10,15 @@ foreach ($this->data['ratings'] as $rating):
         <?= $rating->postcode; ?><br>
     </address>
     <ul class="list-unstyled">
-        <li>Email: <?= $rating->email; ?></li>
         <li>Occupants: <?= $rating->occupants; ?></li>
     </ul>
     <ul class="list-inline">
-        <li>Time to respond: <?= $rating->timeToRespond; ?></li>
-        <li>Quality of solution: <?= $rating->qualityOfSolution; ?></li>
-        <li>Location: <?= $rating->location; ?></li>
-        <li>Property condition: <?= $rating->propertyCondition; ?></li>
-        <li>Communication: <?= $rating->communication; ?></li>
-        <li>Submission Date: <?= $rating->dateCreated; ?></li>
+        <li>Time to respond: <?= $rating->timeToRespond; ?></li><br />
+        <li>Quality of solution: <?= $rating->qualityOfSolution; ?></li><br />
+        <li>Location: <?= $rating->location; ?></li><br />
+        <li>Property condition: <?= $rating->propertyCondition; ?></li><br />
+        <li>Communication: <?= $rating->communication; ?></li><br /><br />
+        <li>Submission Date: <?= $rating->dateCreated; ?></li><br />
     </ul>
     <h2>Overall rating:</h2>
 </div>
@@ -27,7 +26,7 @@ foreach ($this->data['ratings'] as $rating):
 <?php
 endforeach;
 
-    $totalScore += calc_rating($rating->timeToRespond + $rating->qualityOfSolution + $rating->location + $rating->propertyCondition + $rating->communication);
+$totalScore += calc_rating($rating->timeToRespond + $rating->qualityOfSolution + $rating->location + $rating->propertyCondition + $rating->communication);
 
 for ($i = 0; $i < $totalScore; $i++) {
 ?>
